@@ -21,7 +21,7 @@ function evaluateCmd(userInput) {
     commandLibrary.cat(userInputArray.slice(1));
     break;
   case "head":
-    commandLibary.head(userInputArray.slice(1));
+    commandLibrary.head(userInputArray.slice(1));
     break;
   case "tail":
     commandLibrary.tail(userInputArray.slice(1));
@@ -52,7 +52,7 @@ const commandLibrary = {
             tempArray.push(newArray[i]);
           };
           const n = tempArray.join('\n');
-          console.log(headLines);
+          console.log(n);
           done(data);
       });
    },
@@ -66,7 +66,7 @@ const commandLibrary = {
             tempArray.push(newArray[i]);
           };
           const n = tempArray.join('\n');
-          console.log(tailLines);
+          console.log(n);
           done(data);
       });
    }
