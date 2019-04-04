@@ -26,6 +26,8 @@ function evaluateCmd(userInput) {
   case "tail":
     commandLibrary.tail(userInputArray.slice(1));
     break;
+  default:
+    commandLibrary.errorHandler(userInputArray[0]);
   }
 }
 
@@ -46,30 +48,32 @@ const commandLibrary = {
       const fileName = fullPath[0];
       fs.readFile(fileName, (err, data) => {
           if (err) throw err;
-          let newArray = fileName.split('\n').shift();
+          let newArray = data.toString().split('\n');
           let tempArray = [];
-          for(let i=0; i < 3; i++){
+          for(let i=0; i < 10; i++){
             tempArray.push(newArray[i]);
           };
           const n = tempArray.join('\n');
-          console.log(n);
-          done(data);
+          done(n);
       });
    },
    "tail": function(fullPath){
       const fileName = fullPath[0];
       fs.readFile(fileName, (err, data) => {
           if (err) throw err;
-          let newArray = fileName.split('\n').shift();
+          let newArray = data.toString().split('\n');
           let tempArray = [];
           for(let i = newArray.length - 3; i < newArray.length; i++){
             tempArray.push(newArray[i]);
           };
           const n = tempArray.join('\n');
-          console.log(n);
-          done(data);
+          done(n);
       });
-   }
+   },
+
+    "errorHandler": function(userInput){
+      done("This is not a valid input");
+    }
 };
 
 module.exports.commandLibrary = commandLibrary;
